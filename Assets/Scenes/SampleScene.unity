@@ -388,8 +388,8 @@ GameObject:
   - component: {fileID: 480278277}
   - component: {fileID: 480278276}
   m_Layer: 5
-  m_Name: Button
-  m_TagString: Untagged
+  m_Name: GenerateButton
+  m_TagString: GenerateButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,19 +457,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 480278277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1431291351}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &480278277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter Seed...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1183,11 +1171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0eb7d34eaab6c54eaef566cea9b5860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 51
-  zSize: 51
-  xperlin: 0.3
-  zperlin: 0.3
-  yperlin: 2
   gradient:
     serializedVersion: 2
     key0: {r: 0.22229488, g: 0.4627451, b: 0.10588234, a: 1}
@@ -1262,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e9a7b474b386747b6f6b442b4581e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seedInput: {fileID: 1141779962}
 --- !u!4 &1431291353
 Transform:
   m_ObjectHideFlags: 0
@@ -1274,7 +1258,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1707491087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1707491083
@@ -1373,7 +1358,7 @@ RectTransform:
   m_Children:
   - {fileID: 480278275}
   - {fileID: 2088139562}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1431291353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1393,8 +1378,8 @@ GameObject:
   - component: {fileID: 2088139564}
   - component: {fileID: 2088139563}
   m_Layer: 5
-  m_Name: InputField (TMP)
-  m_TagString: Untagged
+  m_Name: SeedInputField
+  m_TagString: SeedInputField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1480,19 +1465,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1431291351}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1576,5 +1549,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1431291353}
   - {fileID: 1377702941}
-  - {fileID: 1707491087}
   - {fileID: 650255921}

@@ -9,41 +9,58 @@ public class PlayManager : MonoBehaviour
 {
     MeshGeneration meshGeneration;
 
-    TextMeshProUGUI SeedInput;
-    Button GenerateButton;
+    Button generateButton;
 
-    int currentSeed; 
+    [SerializeField]
+    TextMeshProUGUI seedInput;
+
+    int currentSeed;
 
     void Start()
     {
         meshGeneration = FindAnyObjectByType<MeshGeneration>();
+        generateButton = FindFirstObjectByType<Button>();
 
-        SeedInput = FindAnyObjectByType<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
-        GenerateButton = FindAnyObjectByType<Canvas>().GetComponentInChildren<Button>();
-
-        GenerateButton.onClick.AddListener(Int32.TryParse(SeedInput.text, out currentSeed) ? GeneratePreviousWorld : GenerateNewWorld);
+        generateButton.onClick.AddListener(GenerateWorld);
     }
 
-    void GenerateNewWorld()
+    void GenerateWorld()
     {
-        int worldSeed = UnityEngine.Random.Range(100000000, 999999999);
-        currentSeed = worldSeed;
+        //Removes the ascii character 8203 to check for null
+        //string seed = seedInput.text.Replace("\u200b", "");
+        string seed = seedInput.text;//.Replace("\u200b", "");
 
-        meshGeneration.SetWorldSeed(currentSeed);
-    }
-
-    void GeneratePreviousWorld()
-    {
-        if(Int32.TryParse(SeedInput.text, out currentSeed))
+        if (string.IsNullOrWhiteSpace(seed))
         {
-            Tuple<int, bool> worldSeed = new Tuple<int, bool>(Int32.Parse(SeedInput.text), true);
-            SeedInput.color = Color.white;
+            int worldSeed = UnityEngine.Random.Range(0, 2147483646);
+            currentSeed = worldSeed;
 
             meshGeneration.SetWorldSeed(currentSeed);
         }
         else
         {
-            SeedInput.color = Color.red;
+            int inputSeed;
+            try 
+            {
+                inputSeed = int.Parse(seed);
+                seedInput.text = "";
+                seedInput.color = Color.black;
+
+                meshGeneration.SetWorldSeed(inputSeed);
+            }
+            catch
+            {
+                if (seedInput.color == Color.red)
+                {
+                    seedInput.text = "";
+                    seedInput.color = Color.black;
+                }
+                else
+                {
+                    seedInput.color = Color.red;
+                }
+            }
         }
+        
     }
 }
